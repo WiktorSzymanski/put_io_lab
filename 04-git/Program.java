@@ -16,7 +16,8 @@ class Singleton {
 	// restricted to this class itself
 	private Singleton()
 	{
-		s = "Hello I am a string part of Singleton class";
+		this.s = "Hello I am a string part of Singleton class";
+		this.data = new ArrayList<String>();
 	}
 
 	// Static method
@@ -25,6 +26,7 @@ class Singleton {
 	{
 		if (single_instance == null)
 			single_instance = new Singleton();
+			System.out.print("Created Singleton")
 
 		return single_instance;
 	}
@@ -71,3 +73,4 @@ class GFG {
 }
 // Important Comment 
 // Even more important comment 
+// Comment 
