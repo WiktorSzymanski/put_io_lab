@@ -10,6 +10,7 @@ class Singleton {
 
 	// Declaring a variable of type String
 	public String s;
+	public List<String> data;
 
 	// Constructor
 	// Here we will be creating private constructor
