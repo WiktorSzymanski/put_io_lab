@@ -12,8 +12,8 @@ public class ExpenseRepository implements IExpenseRepository {
 	private List<Expense> expenses;
 	private IFancyDatabase fancyDatabase;
 
-	public ExpenseRepository() {
-		this.fancyDatabase = new FancyDatabase();
+	public ExpenseRepository(IFancyDatabase database) {
+		this.fancyDatabase = database;
 		expenses = new ArrayList<Expense>();
 	}
 
@@ -50,17 +50,16 @@ public class ExpenseRepository implements IExpenseRepository {
 		fancyDatabase.connect();
 
 		expenses = new ArrayList<Expense>(fancyDatabase.<Expense>queryAll());
+
+		fancyDatabase.close();
 	}
 
 	@Override
 	public void saveExpenses() {
 		fancyDatabase.connect();
 
-		int i = 1;
 		for (Expense expense : expenses) {
 			fancyDatabase.persist(expense);
-			if (i++ % 2 == 0)
-				fancyDatabase.persist(expense);
 		}
 
 		fancyDatabase.close();
